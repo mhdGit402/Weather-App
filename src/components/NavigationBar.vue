@@ -1,11 +1,31 @@
 <script setup>
 import { FwbNavbar, FwbNavbarLogo, FwbButton } from 'flowbite-vue'
-import { RouterLink } from 'vue-router'
+import { RouterLink, useRoute } from 'vue-router'
 import ThemeToggle from './ThemeToggle.vue'
+const route = useRoute()
+
+const handleSaveCity = () => {
+  if (route.query.id != '') {
+    // Get the city ID from the route query
+    const cityID = route.query.id
+
+    // Retrieve the saved cities from local storage
+    const savedCities = localStorage.getItem('savedCities')
+
+    // Parse the saved cities string into an array, or initialize it as an empty array if it doesn't exist
+    const allCities = savedCities ? JSON.parse(savedCities) : []
+
+    // Add the new city ID to the array
+    allCities.push(cityID)
+
+    // Save the updated array back to local storage as a string
+    localStorage.setItem('savedCities', JSON.stringify(allCities))
+  }
+}
 </script>
 
 <template>
-  <fwb-navbar solid>
+  <fwb-navbar class="bg-transparent" solid>
     <template #logo>
       <RouterLink :to="{ name: 'city' }">
         <fwb-navbar-logo image-url="../public/weather.jpg" class="white:text-black">
@@ -14,7 +34,7 @@ import ThemeToggle from './ThemeToggle.vue'
       </RouterLink>
     </template>
     <template #right-side>
-      <fwb-button>
+      <fwb-button @click="handleSaveCity">
         Add city
         <template #suffix>
           <svg

@@ -12,8 +12,9 @@ const router = createRouter({
       component: CityView,
     },
     {
-      path: '/weather/:city',
-      query: ['lat', 'lon'],
+      // path: '/weather/:city',
+      path: '/weather',
+      query: ['lat', 'lon', 'name', 'country', 'c_code', 'id'],
       name: 'weather',
       component: WeatherView,
     },

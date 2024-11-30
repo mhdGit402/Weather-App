@@ -13,8 +13,11 @@ const props = defineProps({
 const handleWeather = (city, longitude, latitude) => {
   router.push({
     name: 'weather',
-    params: { city: city },
+    // params: { city: city.name },
     query: {
+      name: city.name,
+      country: city.country,
+      c_code: city.c_code,
       lon: longitude,
       lat: latitude,
     },
@@ -31,7 +34,13 @@ const handleWeather = (city, longitude, latitude) => {
       hover
       v-for="city in props.city"
       :key="city.id"
-      @click="handleWeather(city.name, city.longitude, city.latitude)"
+      @click="
+        handleWeather(
+          { name: city.name, country: city.country, c_code: city.country_code },
+          city.longitude,
+          city.latitude,
+        )
+      "
     >
       {{ city.name }}, {{ city.country }}, {{ city.country_code }}
     </fwb-list-group-item>
