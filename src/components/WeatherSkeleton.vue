@@ -4,7 +4,7 @@
   <div class="flex items-center justify-center mt-10">
     <div
       role="status"
-      class="max-w-sm animate-pulse mt-10 items-center gap-4 justify-center flex flex-col"
+      class="max-w-sm animate-pulse-fast mt-10 items-center gap-4 justify-center flex flex-col"
     >
       <div class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-48 mb-4"></div>
       <div class="flex items-center gap-4 mt-8">
